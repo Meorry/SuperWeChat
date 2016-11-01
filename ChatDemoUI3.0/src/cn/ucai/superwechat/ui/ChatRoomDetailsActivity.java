@@ -13,8 +13,6 @@
  */
 package cn.ucai.superwechat.ui;
 
-import java.util.List;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -36,11 +34,14 @@ import com.hyphenate.chat.EMChatRoom;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMConversation.EMConversationType;
-import cn.ucai.superwechat.R;
 import com.hyphenate.easeui.utils.EaseUserUtils;
 import com.hyphenate.easeui.widget.EaseAlertDialog;
 import com.hyphenate.easeui.widget.EaseAlertDialog.AlertDialogUser;
 import com.hyphenate.easeui.widget.EaseExpandGridView;
+
+import java.util.List;
+
+import cn.ucai.superwechat.R;
 
 public class ChatRoomDetailsActivity extends BaseActivity implements OnClickListener {
 	private static final String TAG = "ChatRoomDetailsActivity";
