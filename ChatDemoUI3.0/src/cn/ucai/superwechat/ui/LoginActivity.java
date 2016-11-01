@@ -28,11 +28,12 @@ import android.widget.Toast;
 
 import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
+import com.hyphenate.easeui.utils.EaseCommonUtils;
+
 import cn.ucai.superwechat.DemoApplication;
 import cn.ucai.superwechat.DemoHelper;
 import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.db.DemoDBManager;
-import com.hyphenate.easeui.utils.EaseCommonUtils;
 
 /**
  * Login screen
@@ -58,7 +59,7 @@ public class LoginActivity extends BaseActivity {
 
 			return;
 		}
-		setContentView(R.layout.em_activity_login);
+		setContentView(R.layout.activity_login);
 
 		usernameEditText = (EditText) findViewById(R.id.username);
 		passwordEditText = (EditText) findViewById(R.id.password);
