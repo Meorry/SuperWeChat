@@ -23,7 +23,7 @@ android {
     buildToolsVersion "24.0.2"
 
     defaultConfig {
-        applicationId "com.hyphenate.chatuidemo"
+        applicationId "cn.ucai.superwechat"
         minSdkVersion 19
         targetSdkVersion 23
         multiDexEnabled true
