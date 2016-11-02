@@ -216,6 +216,8 @@ public class LoginActivity extends BaseActivity {
                              pd.dismiss();
                              L.e(TAG,"login fail ="+result.getRetCode());
                          }
+                     }else {
+                         pd.dismiss();
                      }
                  }
             }
@@ -276,5 +278,11 @@ public class LoginActivity extends BaseActivity {
                 MFGT.gotoRegister(this);
                 break;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        pd.dismiss();
     }
 }
