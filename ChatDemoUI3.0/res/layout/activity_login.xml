@@ -3,7 +3,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical">
-
+    <include layout="@layout/view_layout_title"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,6 +22,7 @@
             android:textSize="25sp"/>
 
         <EditText
+            android:id="@+id/et_username"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.1"
@@ -50,6 +51,7 @@
             android:textSize="25sp"/>
 
         <EditText
+            android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.1"
@@ -62,6 +64,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/bt_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -73,16 +76,19 @@
         android:textSize="25sp"/>
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/tv_login_problem"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="10dp"
         android:layout_marginTop="12dp"
         android:gravity="center_vertical|right"
         android:text="登录遇到问题"
+        android:layout_gravity="right"
         android:textColor="@color/button_blue"
         android:textSize="18sp"/>
 
     <Button
+        android:id="@+id/bt_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
