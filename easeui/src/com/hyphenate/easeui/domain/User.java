@@ -100,9 +100,9 @@ public class User implements Serializable {
 //		return initialLetter;
 //	}
 
-	public void setInitialLetter(String initialLetter) {
-		this.initialLetter = initialLetter;
-	}
+//	public void setInitialLetter(String initialLetter) {
+//		this.initialLetter = initialLetter;
+//	}
 
 	@Override
 	public String toString() {
