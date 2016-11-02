@@ -103,4 +103,46 @@
     <string name="setting_txt_tongyong">通用</string>
     <string name="setting_txt_about">关于微信</string>
     <string name="setting_btn_exit">退出登录</string>
+    <string name="User__nick_name_cannot_be_empty">nick name cannot be empty</string>
+    <!--消息码-->
+    <string name="msg_101">msg register username exists</string>
+    <string name="msg_102">msg register fail</string>
+    <string name="msg_103">msg unregister fail</string>
+    <string name="msg_104">msg user search fail</string>
+    <string name="msg_105">msg login unknow user</string>
+    <string name="msg_106">msg login error password</string>
+    <string name="msg_107">msg login success</string>
+    <string name="msg_108">msg user same nick</string>
+    <string name="msg_109">msg user update nick fail</string>
+    <string name="msg_110">msg user same password</string>
+    <string name="msg_111">msg user update password fail</string>
+    <string name="msg_112">msg location upload fail</string>
+    <string name="msg_113">msg location update fail</string>
+    <string name="msg_201">msg register upload avatar fail</string>
+    <string name="msg_202">msg upload avatar fail</string>
+    <string name="msg_301">msg contact firended</string>
+    <string name="msg_302">msg contact add fail</string>
+    <string name="msg_303">msg contact del fail</string>
+    <string name="msg_304">msg get contact all fail</string>
+    <string name="msg_305">msg get contact pages fail</string>
+    <string name="msg_401">msg group hxid exists</string>
+    <string name="msg_402">msg group create fail</string>
+    <string name="msg_403">msg group add member fail</string>
+    <string name="msg_404">msg group get members fail</string>
+    <string name="msg_405">msg group unkonw</string>
+    <string name="msg_406">msg group same name</string>
+    <string name="msg_407">msg group update name fail</string>
+    <string name="msg_408">msg group delete member fail</string>
+    <string name="msg_409">msg group delete members fail</string>
+    <string name="msg_410">msg group delete fail</string>
+    <string name="msg_411">msg group find by gourp id fail</string>
+    <string name="msg_412">msg group find by hx id fail</string>
+    <string name="msg_413">msg group find by user name fail</string>
+    <string name="msg_414">msg group find by group name fail</string>
+    <string name="msg_415">msg public group fail</string>
+    <string name="msg_501">msg location get fail</string>
+    <string name="msg_999">msg unknow</string>
+    <string name="msg_1">msg illegal request</string>
+
+
 </resources>
