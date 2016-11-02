@@ -7,7 +7,7 @@ import android.util.Log;
  */
 public class L {
     public static boolean isDebug = true;
-    private static final String TAG = "fulicenter";
+    private static final String TAG = "superwechat";
 
     public static void i(String msg){
         if(isDebug) {
