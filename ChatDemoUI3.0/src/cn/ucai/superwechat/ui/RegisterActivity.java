@@ -16,7 +16,10 @@ package cn.ucai.superwechat.ui;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hyphenate.EMError;
@@ -32,11 +35,11 @@ import cn.ucai.superwechat.SuperWeChatHelper;
 import cn.ucai.superwechat.bean.Result;
 import cn.ucai.superwechat.data.NetDao;
 import cn.ucai.superwechat.data.OkHttpUtils;
+import cn.ucai.superwechat.utils.CommonUtils;
 import cn.ucai.superwechat.utils.MFGT;
 
 /**
  * register screen
- *
  */
 public class RegisterActivity extends BaseActivity {
     @BindView(R.id.et_register_username)
@@ -47,18 +50,31 @@ public class RegisterActivity extends BaseActivity {
     EditText etRegisterPassword;
     @BindView(R.id.et_register_confirm_password)
     EditText etRegisterConfirmPassword;
+    @BindView(R.id.txt_title)
+    TextView txtTitle;
 
     ProgressDialog pd = null;
     String username;
     String pwd;
     String nickname;
     RegisterActivity mContext;
+    @BindView(R.id.img_back)
+    ImageView imgBack;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
         mContext = this;
+        initview();
+    }
+
+    private void initview() {
+        imgBack.setVisibility(View.VISIBLE);
+        txtTitle.setVisibility(View.VISIBLE);
+        txtTitle.setText(R.string.register);
     }
 
     public void register() {
@@ -70,15 +86,15 @@ public class RegisterActivity extends BaseActivity {
             Toast.makeText(this, getResources().getString(R.string.User_name_cannot_be_empty), Toast.LENGTH_SHORT).show();
             etRegisterUsername.requestFocus();
             return;
-        }else if(!username.matches("[a-zA-Z]\\w{5,15}")){
+        } else if (!username.matches("[a-zA-Z]\\w{5,15}")) {
             Toast.makeText(this, getResources().getString(R.string.illegal_user_name), Toast.LENGTH_SHORT).show();
             etRegisterUsername.requestFocus();
             return;
-        }else  if (TextUtils.isEmpty(nickname)) {
+        } else if (TextUtils.isEmpty(nickname)) {
             Toast.makeText(this, getResources().getString(R.string.User__nick_name_cannot_be_empty), Toast.LENGTH_SHORT).show();
             etRegisterNick.requestFocus();
             return;
-        }else if (TextUtils.isEmpty(pwd)) {
+        } else if (TextUtils.isEmpty(pwd)) {
             Toast.makeText(this, getResources().getString(R.string.Password_cannot_be_empty), Toast.LENGTH_SHORT).show();
             etRegisterPassword.requestFocus();
             return;
@@ -106,13 +122,21 @@ public class RegisterActivity extends BaseActivity {
         NetDao.register(mContext, username, nickname, pwd, new OkHttpUtils.OnCompleteListener<Result>() {
             @Override
             public void onSuccess(Result result) {
-                if(result!=null&&result.isRetMsg()){
-                    registerEMserver();
-                }else{
-                    unRegisterAppServer();
+                    if (result == null) {
+                        pd.dismiss();
+                    } else {
+                        if (result!=null && result.isRetMsg()) {
+                            registerEMserver();
+                        } else {
+                            if (result.getRetCode() == I.MSG_REGISTER_USERNAME_EXISTS) {
+                                CommonUtils.showMsgShortToast(result.getRetCode());
+                                pd.dismiss();
+                            } else {
+                                unRegisterAppServer();
+                            }
+                        }
+                    }
                 }
-            }
-
             @Override
             public void onError(String error) {
                 pd.dismiss();
@@ -124,22 +148,9 @@ public class RegisterActivity extends BaseActivity {
         NetDao.unregister(mContext, username, new OkHttpUtils.OnCompleteListener<Result>() {
             @Override
             public void onSuccess(Result result) {
-                if(result!=null&&result.isRetMsg()){
-                    registerEMserver();
-                }else{
-                    unRegisterAppServer();
-                    if(result==null){
-                        pd.dismiss();
-                    }else {
-                        if (result.isRetMsg()) {
-                            registerEMserver();
-                        } else {
-                            if (result.getRetCode() == I.MSG_REGISTER_USERNAME_EXISTS) {
-//                                CommonUtils.showMsgShortToast(result.getRetCode());
-                                pd.dismiss();
-                            } else {
-                                unRegisterAppServer();
-                            }}}}}
+                pd.dismiss();
+            }
+
             @Override
             public void onError(String error) {
                 pd.dismiss();
@@ -190,11 +201,16 @@ public class RegisterActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         MFGT.finish(this);
     }
 
     @OnClick(R.id.btn_register)
-    public void onClick() {
+    public void onRegisterClick() {
+        register();
+    }
+
+    @OnClick(R.id.img_back)
+    public void onBackClick() {
+        MFGT.finish(this);
     }
 }

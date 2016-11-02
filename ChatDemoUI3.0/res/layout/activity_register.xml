@@ -4,7 +4,7 @@
               android:layout_height="match_parent"
               android:id="@+id/layout_activity_register"
               android:orientation="vertical">
-
+    <include layout="@layout/view_layout_title"/>
     <LinearLayout
         android:id="@+id/layout_register_username"
         android:layout_width="match_parent"
@@ -31,7 +31,6 @@
             android:layout_height="match_parent"
             android:layout_weight="0.1"
             android:hint="你的用户名"
-            android:inputType="phone"
             android:textSize="20sp"
             android:background="@color/white"/>
 
@@ -62,7 +61,6 @@
             android:layout_height="match_parent"
             android:layout_weight="0.1"
             android:hint="你的昵称"
-            android:inputType="textPassword"
             android:paddingLeft="5dp"
             android:textSize="20sp"
             android:background="@color/white"/>
