@@ -29,6 +29,7 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.view.ViewPager;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -67,7 +68,7 @@ import cn.ucai.superwechat.widget.DMTabHost;
 import cn.ucai.superwechat.widget.MFViewPager;
 
 @SuppressLint("NewApi")
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedChangeListener,ViewPager.OnPageChangeListener {
 
     protected static final String TAG = "MainActivity";
     @BindView(R.id.txt_left)
@@ -219,6 +220,8 @@ public class MainActivity extends BaseActivity {
         mAdapter.addFragment(new SettingsFragment(),getString(R.string.me));
         mAdapter.notifyDataSetChanged();
         mdmthost.setChecked(0);
+        mlayoutViewpage.setOnPageChangeListener(this);
+        mdmthost.setOnCheckedChangeListener(this);
     }
 
     EMMessageListener messageListener = new EMMessageListener() {
@@ -317,6 +320,27 @@ public class MainActivity extends BaseActivity {
             }
         };
         broadcastManager.registerReceiver(broadcastReceiver, intentFilter);
+    }
+
+    @Override
+    public void onCheckedChange(int checkedPosition, boolean byUser) {
+        mlayoutViewpage.setCurrentItem(checkedPosition,false);
+        mdmthost.setChecked(checkedPosition);
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+           mdmthost.setChecked(position);
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
     }
 
     public class MyContactListener implements EMContactListener {
