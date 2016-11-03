@@ -79,6 +79,8 @@ public class SuperWeChatHelper {
     protected static final String TAG = "DemoHelper";
     
 	private EaseUI easeUI;
+
+    private  Context mContext;
 	
     /**
      * EMEventListener
@@ -86,6 +88,8 @@ public class SuperWeChatHelper {
     protected EMMessageListener messageListener = null;
 
 	private Map<String, EaseUser> contactList;
+
+    private Map<String, User> appContactList;
 
 	private Map<String, RobotUser> robotList;
 
@@ -218,6 +222,11 @@ public class SuperWeChatHelper {
             @Override
             public EaseUser getUser(String username) {
                 return getUserInfo(username);
+            }
+
+            @Override
+            public User getAppUser(String usernaem) {
+                return  getAppUserInfo(username);
             }
         });
 
@@ -358,6 +367,8 @@ public class SuperWeChatHelper {
             }
         });
     }
+
+
 
     EMConnectionListener connectionListener;
     /**
@@ -725,6 +736,26 @@ public class SuperWeChatHelper {
         }
         return user;
 	}
+
+    private User getAppUserInfo(String username) {
+        User user = null;
+//        if(username.equals(EMClient.getInstance().getCurrentUser()))
+//            return getUserProfileManager().getCurrentUserInfo();
+//
+////            UserDao dao = new UserDao();
+////          user = dao.getUser(EMClient.getInstance().getCurrentUser());
+//        user = getContactList().get(username);
+//        if(user == null && getRobotList() != null){
+//            user = getRobotList().get(username);
+//        }
+//
+//        // if user is not in your contacts, set inital letter for him/her
+//        if(user == null){
+//            user = new EaseUser(username);
+//            EaseCommonUtils.setUserInitialLetter(user);
+//        }
+        return user;
+    }
 	
 	 /**
      * Global listener
@@ -1255,4 +1286,59 @@ public class SuperWeChatHelper {
     public void setCureentUser(User cureentUser) {
         this.cureentUser = cureentUser;
     }
+
+    /**
+     * update contact list
+     *
+     */
+    public void setAppContactList(Map<String, User> aContactList) {
+        if(aContactList == null){
+            if (appContactList != null) {
+                appContactList.clear();
+            }
+            return;
+        }
+
+        appContactList = aContactList;
+    }
+
+    /**
+     * save single contact
+     */
+    public void saveAppContact(User user){
+        appContactList.put(user.getMUserName(), user);
+        demoModel.saveAppContact(user);
+    }
+
+    /**
+     * get contact list
+     *
+     * @return
+     */
+    public Map<String, User> getAppContactList() {
+        if (isLoggedIn() && appContactList == null) {
+            appContactList = demoModel.getAppContactList();
+        }
+
+        // return a empty non-null object to avoid app crash
+        if(appContactList == null){
+            return new Hashtable<String, User>();
+        }
+
+        return appContactList;
+    }
+
+    /**
+     * update user list to cache and database
+     *
+     */
+    public void updateAppContactList(List<User> contactInfoList) {
+        for (User u : contactInfoList) {
+            appContactList.put(u.getMUserName(), u);
+        }
+        ArrayList<User> mList = new ArrayList<User>();
+        mList.addAll(appContactList.values());
+        demoModel.saveAppContactList(mList);
+    }
+
 }
