@@ -465,7 +465,7 @@ public class SuperWeChatDBManager {
                     values.put(UserDao.USER_COLUMN_AVATAR_SUFFIX,user.getMAvatarSuffix());
                 if(user.getMAvatarLastUpdateTime() != null)
                     values.put(UserDao.USER_COLUMN_AVATAR_LASTAUPDATE_TIME,user.getMAvatarLastUpdateTime());
-                db.replace(UserDao.TABLE_NAME, null, values);
+                db.replace(UserDao.USER_TABLE_NAME, null, values);
             }
         }
     }

@@ -739,21 +739,12 @@ public class SuperWeChatHelper {
 
     private User getAppUserInfo(String username) {
         User user = null;
-//        if(username.equals(EMClient.getInstance().getCurrentUser()))
-//            return getUserProfileManager().getCurrentUserInfo();
-//
-////            UserDao dao = new UserDao();
-////          user = dao.getUser(EMClient.getInstance().getCurrentUser());
-//        user = getContactList().get(username);
-//        if(user == null && getRobotList() != null){
-//            user = getRobotList().get(username);
-//        }
-//
-//        // if user is not in your contacts, set inital letter for him/her
-//        if(user == null){
-//            user = new EaseUser(username);
-//            EaseCommonUtils.setUserInitialLetter(user);
-//        }
+        user = getAppContactList().get(username);
+        // if user is not in your contacts, set inital letter for him/her
+        if(user == null){
+            user = new User(username);
+            EaseCommonUtils.setAppUserInitialLetter(user);
+        }
         return user;
     }
 	
