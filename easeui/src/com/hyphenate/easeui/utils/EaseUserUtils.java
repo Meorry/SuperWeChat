@@ -1,11 +1,13 @@
 package com.hyphenate.easeui.utils;
 
 import android.content.Context;
+import android.support.v4.app.FragmentActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.R;
 import com.hyphenate.easeui.controller.EaseUI;
 import com.hyphenate.easeui.controller.EaseUI.EaseUserProfileProvider;
@@ -84,10 +86,10 @@ public class EaseUserUtils {
                 Glide.with(context).load(avatarResId).into(imageView);
             } catch (Exception e) {
                 //use default avatar
-                Glide.with(context).load(user.getAvatar()).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.ease_default_avatar).into(imageView);
+                Glide.with(context).load(user.getAvatar()).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.default_hd_avatar).into(imageView);
             }
         }else{
-            Glide.with(context).load(R.drawable.ease_default_avatar).into(imageView);
+            Glide.with(context).load(R.drawable.default_hd_avatar).into(imageView);
         }
     }
 
@@ -106,5 +108,22 @@ public class EaseUserUtils {
     }
 
 
-    
+    public static void setCuentAppUserAvatar(FragmentActivity activity, ImageView imageview) {
+       String username = EMClient.getInstance().getCurrentUser();
+        setAppUserAvatar(activity,username,imageview);
+    }
+
+    public static void setCuentAppUserNick(TextView textview) {
+        String username = EMClient.getInstance().getCurrentUser();
+        setAppUserNick(username,textview);
+    }
+
+    public static void setCuentAppUserNameWithNo(TextView textview) {
+        String username = EMClient.getInstance().getCurrentUser();
+        setAppUserName("微信号 ：",username,textview);
+    }
+
+    private static void setAppUserName(String suffix,String username, TextView textview) {
+        textview.setText(suffix+username);
+    }
 }
