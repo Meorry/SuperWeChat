@@ -1,129 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#eff2f6"
-    android:orientation="vertical" >
-    
-	<RelativeLayout
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_top_bar"
-        android:background="@color/top_bar_normal_bg"
-        android:gravity="center_vertical" >
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+    <include layout="@layout/view_layout_title"/>
 
-        <include layout="@layout/ease_commom_back_btn" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="@string/title_user_profile"
-            android:textColor="#fff"
-            android:textSize="18sp" />
-    </RelativeLayout>
-    <LinearLayout 
+    <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        android:orientation="vertical"
-        >
-        <RelativeLayout 
+        android:scrollbars="none">
+
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            >
-            <ImageView 
-                android:id="@+id/user_head_avatar"
-                android:layout_width="60dip"
-                android:layout_height="60dip"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_margin="8dip"
-                android:scaleType="centerCrop"
-                android:src="@drawable/em_default_avatar"
-                />
-            <ImageView 
-                android:id="@+id/user_head_headphoto_update"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/user_head_avatar"
-                android:layout_alignBottom="@+id/user_head_avatar"
-                android:layout_alignRight="@+id/user_head_avatar"
-                android:layout_margin="3dip"
-                android:src="@drawable/em_profile_headphoto_update_icon"
-                />
-            
-            <LinearLayout 
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.3dp"
+                android:background="@color/black3" />
+
+            <RelativeLayout
+                android:id="@+id/layout_userinfo_avatar"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/user_head_avatar"
-                android:orientation="vertical"
-                >
-                <LinearLayout 
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dip"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    >
-                    <TextView 
-                        android:id="@+id/user_username"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="#000000"
-                        android:textSize="16sp"
-                        />
-                </LinearLayout>
+                android:layout_marginTop="10dp"
+                android:background="@drawable/setting_item_selector"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
+
+                <TextView
+                    style="@style/list_txt_Style"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/userinfo_txt_avatar"
+                    android:textSize="18sp" />
+                <ImageView
+                    android:id="@+id/iv_userinfo_avatar"
+                    android:layout_width="60dip"
+                    android:layout_height="60dip"
+                    android:src="@drawable/default_hd_avatar"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.3dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/black3" />
+
+            <LinearLayout
+                android:id="@+id/layout_userinfo_nick"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/setting_item_selector">
+                <TextView
+                    style="@style/list_txt_Style_without_nopadding"
+                    android:layout_alignParentLeft="true"
+                    android:text="@string/userinfo_txt_nick"
+                    android:layout_width="wrap_content"/>
+                <TextView
+                    android:id="@+id/tv_userinfo_nick"
+                    style="@style/list_txt_Style_without_nopadding_right"
+                    android:layout_alignParentRight="true"
+                    android:text="@string/userinfo_txt_nosettings"
+                    android:layout_width="wrap_content"/>
+
             </LinearLayout>
-        </RelativeLayout>
-        <View 
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="@color/gray_pressed"
-            
-            />
-        <RelativeLayout 
-            android:id="@+id/rl_nickname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#ffffff"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dip"
-            >
-            <TextView 
-				android:layout_width="wrap_content"                
-				android:layout_height="wrap_content"
-				android:layout_margin="5dp"
-				android:layout_alignParentLeft="true"
-				android:text="@string/nickname"
-				android:textSize="16sp"
-				android:gravity="center_vertical"
-				android:textColor="#808080"
-                android:background="#FFFFFF"
-                />
-            <TextView 
-                android:id="@+id/user_nickname"
-				android:layout_width="wrap_content"                
-				android:layout_height="wrap_content"
-				android:layout_margin="5dp"
-				android:layout_alignParentRight="true"
-				android:paddingRight="20dip"
-				android:textSize="16sp"
-				android:gravity="center_vertical"
-				android:textColor="#3366cc"
-                android:background="#FFFFFF"
-                />
-            <ImageView 
-                android:id="@+id/ic_right_arrow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/em_ic_right_arrow"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_margin="5dip"
-                />
-        </RelativeLayout>
-    </LinearLayout>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.3dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/black3" />
+            <LinearLayout
+                android:id="@+id/layout_userinfo_name"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/setting_item_selector">
+                <TextView
+                    style="@style/list_txt_Style_without_nopadding"
+                    android:layout_alignParentLeft="true"
+                    android:text="@string/userinfo_txt_name"
+                    android:layout_width="wrap_content"/>
+                <TextView
+                    android:id="@+id/tv_userinfo_name"
+                    style="@style/list_txt_Style_without_nopadding_right"
+                    android:layout_alignParentRight="true"
+                    android:text="@string/userinfo_txt_nosettings"
+                    android:layout_width="wrap_content"/>
+
+            </LinearLayout>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.3dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/black3" />
+            <TextView
+                android:id="@+id/tv_userinfo_qrcode"
+                style="@style/list_txt_Style"
+                android:drawablePadding="10dp"
+                android:drawableRight="@drawable/right"
+                android:text="@string/userinfo_txt_qrcode" />
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.3dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/black3" />
+            <TextView
+                android:id="@+id/tv_userinfo_address"
+                style="@style/list_txt_Style_without_right"
+                android:drawablePadding="10dp"
+                android:text="@string/userinfo_txt_address" />
+
+            <LinearLayout
+                android:id="@+id/layout_userinfo_sex"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/setting_item_selector">
+                <TextView
+                    style="@style/list_txt_Style_without_nopadding"
+                    android:layout_alignParentLeft="true"
+                    android:text="@string/userinfo_txt_sex"
+                    android:layout_width="wrap_content"/>
+                <TextView
+                    android:id="@+id/tv_userinfo_sex"
+                    style="@style/list_txt_Style_without_nopadding_right"
+                    android:layout_alignParentRight="true"
+                    android:text="@string/userinfo_txt_nosettings"
+                    android:layout_width="wrap_content"/>
+
+            </LinearLayout>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.3dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/black3" />
+
+            <LinearLayout
+                android:id="@+id/layout_userinfo_area"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/setting_item_selector">
+                <TextView
+                    style="@style/list_txt_Style_without_nopadding"
+                    android:layout_alignParentLeft="true"
+                    android:text="@string/userinfo_txt_area"
+                    android:layout_width="wrap_content"/>
+                <TextView
+                    android:id="@+id/tv_userinfo_area"
+                    style="@style/list_txt_Style_without_nopadding_right"
+                    android:layout_alignParentRight="true"
+                    android:text="@string/userinfo_txt_nosettings"
+                    android:layout_width="wrap_content"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.3dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/black3" />
+            <LinearLayout
+                android:id="@+id/layout_userinfo_sign"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/setting_item_selector">
+                <TextView
+                    style="@style/list_txt_Style_without_nopadding"
+                    android:layout_alignParentLeft="true"
+                    android:text="@string/userinfo_txt_sign"
+                    android:layout_width="wrap_content"/>
+                <TextView
+                    android:id="@+id/tv_userinfo_sign"
+                    style="@style/list_txt_Style_without_nopadding_right"
+                    android:layout_alignParentRight="true"
+                    android:text="@string/userinfo_txt_noinput"
+                    android:layout_width="wrap_content"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.3dp"
+                android:background="@color/black3" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

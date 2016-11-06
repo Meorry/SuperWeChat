@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="User_name_cannot_be_modify">微信号不能修改</string>
+    <string name="toast_nick_not_modify">昵称更新失败</string>
 </resources>
