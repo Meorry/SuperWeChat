@@ -223,7 +223,7 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 				break;
 			case REQUESTCODE_CUTTING:
 				if (data != null) {
-//					uodateAppUserAvatar(data);
+					uodateAppUserAvatar(data);
 //                    setPicToView(data);
 				}
 				break;
@@ -233,6 +233,38 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 		super.onActivityResult(requestCode, resultCode, data);
 	}
 
+	private void uodateAppUserAvatar(final Intent picData) {
+		dialog = ProgressDialog.show(this, getString(R.string.dl_update_photo), getString(R.string.dl_waiting));
+		dialog.show();
+		File file = saveBitmapFile(picData);
+		L.e(TAG,"file="+file);
+		NetDao.updateAvatar(this, user.getMUserName(), file, new OkHttpUtils.OnCompleteListener<String>() {
+			@Override
+			public void onSuccess(String s) {
+				if (s!=null){
+					Result result = ResultUtils.getResultFromJson(s,User.class);
+					L.e(TAG,"result="+result);
+					if (result!=null && result.isRetMsg()){
+						setPicToView(picData);
+					}else {
+						dialog.dismiss();
+						CommonUtils.showMsgShortToast(result!=null?result.getRetCode():-1);
+//                        CommonUtils.showLongToast(result!=null?R.string.toast_updatephoto_fail);
+					}
+				}else {
+					dialog.dismiss();
+					CommonUtils.showLongToast(R.string.toast_updatephoto_fail);
+				}
+			}
+
+			@Override
+			public void onError(String error) {
+				L.e(TAG,"error"+error);
+				dialog.dismiss();
+				CommonUtils.showLongToast(R.string.toast_updatephoto_fail);
+			}
+		});
+	}
 
 	public void startPhotoZoom(Uri uri) {
 		Intent intent = new Intent("com.android.camera.action.CROP");
